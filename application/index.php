@@ -4,22 +4,31 @@
     <title>Título hipotético</title>
     <style>
        .forms1 {
-           background-color: gray;
-           height: 250px;
-           width: 250px;
            text-align: center;
+           position: absolute;
+           background-color: lightgray;
+           height: 250px;
+           width: 300px;
+           border-radius: 12px;
+           margin-left: 100px;
+           margin-top: 50px;
        }
 
+       input {
+           text-align: center;
+           position: relative;
+       }
     </style>
 </head>
 <body>
+    <h2>Formulário teste</h2>
     <div class="forms1">
-        <form action="crudDb.php" method="post">
+        <form action="UI.php" method="post">
             <label for="name"><br>Nome<br></label>
             <input type="text" id="name" name="name" placeholder="Insira o seu nome"><br>
 
             <label for="number"><br>Número de telefone<br></label>
-            <input type="number" id="number" name="number" placeholder="Insira o telefone">
+            <input type="number" id="telefone" name="telefone" placeholder="Insira o telefone">
 
             <label for="email"><br><br>Email<br></label>
             <input type="email" id="email" name="email" placeholder="Informe o email">
@@ -27,7 +36,6 @@
             <button type="submit">Cadastrar</button>
         </form>
     </div>
-
 
 </body>
 </html>
