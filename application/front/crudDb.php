@@ -39,14 +39,24 @@ function deleteData($table, $data) {
         echo "Error: " . $e->getMessage();
     }
 }
-function printarBanco($table) {
+function obterBanco($table) {
     try {
         $connect = connection();
         $cmd = $connect->prepare("SELECT * FROM $table");
         $cmd->execute();
-        print_r($cmd->fetchAll(PDO::FETCH_ASSOC));
+        return $cmd->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
+        return "Error: " . $e->getMessage();
+    }
+}
+
+function printarBanco($table) {
+    try {
+        $connect = connection();
+        $db = obterBanco($table);
+    }
+    catch (Exception $e) {
+        return "Error: " . $e->getMessage();
     }
 }
