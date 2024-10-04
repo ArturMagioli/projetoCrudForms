@@ -27,7 +27,7 @@
             <label for="name"><br>Nome<br></label>
             <input type="text" id="name" name="name" placeholder="Insira o seu nome"><br>
 
-            <label for="number"><br>Número de telefone<br></label>
+            <label for="telefone"><br>Número de telefone<br></label>
             <input type="number" id="telefone" name="telefone" placeholder="Insira o telefone">
 
             <label for="email"><br><br>Email<br></label>

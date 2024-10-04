@@ -7,10 +7,10 @@ function connection() {
         return $pdo;
     }
     catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        return "Error: " . $e->getMessage();
     }
     catch (Exception $e) {
-        echo "Unexpected error: " . $e->getMessage();
+        return "Unexpected error: " . $e->getMessage();
     }
 }
 
