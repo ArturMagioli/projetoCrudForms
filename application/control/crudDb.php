@@ -1,6 +1,4 @@
 <?php
-
-
 function connection() {
     try {
         $pdo = new PDO('sqlite:C:\Users\Artur.Magioli\PhpstormProjects\projetoCrudForms\dataBase\banco_forms.sqlite');
@@ -42,7 +40,7 @@ function deleteData($table, $data) {
 function obterBanco($table) {
     try {
         $connect = connection();
-        $cmd = $connect->prepare("SELECT * FROM $table");
+        $cmd = $connect->prepare("SELECT nome, telefone, email FROM $table");
         $cmd->execute();
         return $cmd->fetchAll(PDO::FETCH_ASSOC);
     }

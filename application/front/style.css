@@ -1,0 +1,75 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Melhor controle de largura e preenchimento */
+    font-family: Arial, sans-serif;
+}
+
+label, input {
+    display: block;
+    line-height: 30px;
+    height: 30px;
+    outline: none;
+    font-size: 13pt;
+    width: 100%;
+}
+
+form {
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 30px auto; /* Centraliza o formulário */
+}
+
+input[type="submit"] {
+    margin-top: 10px;
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    background-color: #007BFF; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    padding: 10px; /* Preenchimento interno do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+}
+
+#esquerda {
+    width: 35%;
+    float: left;
+}
+
+#direita {
+    width: 65%;
+    height: 250px;
+    float: right;
+}
+
+table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse; /* Remove espaços entre as bordas da tabela */
+}
+
+tr {
+    line-height: 30px;
+}
+
+tr#titulo {
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+td {
+    padding: 5px; /* Espaçamento interno das células da tabela */
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Borda das células */
+}
+
+@media (max-width: 768px) {
+    #esquerda, #direita {
+        width: 100%; /* Torna os elementos 100% em telas menores */
+        float: none; /* Remove o float */
+    }
+}
