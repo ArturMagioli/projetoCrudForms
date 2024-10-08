@@ -12,14 +12,27 @@ function connection() {
     }
 }
 
+function obterLinha($table, $email) {
+    $connect = connection();
+    $cmd = $connect->prepare("SELECT * FROM $table where email = :email");
+    $cmd->bindValue(':email', $email);
+    $cmd->execute();
+    return $cmd->fetch(PDO::FETCH_ASSOC);
+}
+
 function insertData($table, $data) {
     try {
-        $connect = connection();
-        $cmd = $connect->prepare("INSERT INTO $table (nome, telefone, email) VALUES (:nome, :telefone, :email)");
-        $cmd->bindValue(':nome', $data['name']);
-        $cmd->bindValue(':telefone', $data['telefone']);
-        $cmd->bindValue(':email', $data['email']);
-        $cmd->execute();
+        if(!obterLinha($table, $data['email'])) {
+            $connect = connection();
+            $cmd = $connect->prepare("INSERT INTO $table (nome, telefone, email) VALUES (:nome, :telefone, :email)");
+            $cmd->bindValue(':nome', $data['nome']);
+            $cmd->bindValue(':telefone', $data['telefone']);
+            $cmd->bindValue(':email', $data['email']);
+            $cmd->execute();
+        }
+        else {
+            echo "O usuário encontra-se registrado!";
+        }
     }
     catch (Exception $e) {
         echo "Error: " . $e->getMessage();
@@ -43,16 +56,6 @@ function obterBanco($table) {
         $cmd = $connect->prepare("SELECT nome, telefone, email FROM $table");
         $cmd->execute();
         return $cmd->fetchAll(PDO::FETCH_ASSOC);
-    }
-    catch (Exception $e) {
-        return "Error: " . $e->getMessage();
-    }
-}
-
-function printarBanco($table) {
-    try {
-        $connect = connection();
-        $db = obterBanco($table);
     }
     catch (Exception $e) {
         return "Error: " . $e->getMessage();

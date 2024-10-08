@@ -8,8 +8,8 @@
         <section id="esquerda">
             <form action="index.php" method="post">
                 <h2>CADASTRAR PESSOA</h2>
-                <label for="name">Nome<br></label>
-                <input type="text" id="name" name="name" placeholder="Insira o seu nome"><br>
+                <label for="nome">Nome<br></label>
+                <input type="text" id="nome" name="nome" placeholder="Insira o seu nome"><br>
 
                 <label for="telefone">Telefone<br></label>
                 <input type="number" id="telefone" name="telefone" placeholder="Insira o telefone">
@@ -18,7 +18,14 @@
                 <input type="email" id="email" name="email" placeholder="Informe o email">
                 <br><br>
                 <button type="submit">Cadastrar</button>
+
             </form>
+
+            <?php
+                require_once "../control/crudDb.php";
+                $data = $_POST;
+                insertData('pessoas', $data);
+            ?>
         </section>
 
         <section id="direita">
