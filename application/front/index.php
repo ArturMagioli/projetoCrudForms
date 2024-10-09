@@ -1,5 +1,4 @@
 <?php
-
 //Lida com o CRUD:
 require_once "../control/crudDb.php";
 $data = $_POST;
@@ -8,19 +7,33 @@ $telefone = $data['telefone'] ?? null;
 $email = $data['email'] ?? null;
 
 // tabela dinâmica:
-require_once "../control/crudDb.php";
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($data['operacao'] === 'c' && $nome && $telefone && $email) {
         insertData('pessoas', $data);
     } else if ($data['operacao'] === 'd') {
         deleteData('pessoas', $data['id']);
     } else if ($data['operacao'] == 'a') {
-        echo 'Em andamento';
+        print_r($data);
+        ?>
+        <section id="esquerda">
+            <form id="alterar" action="index.php" method="post">
+                <h2>CADASTRAR PESSOA</h2>
+                <label for="nome">Nome<br></label>
+                <input type="text" id="nome" name="nome" required><br>
+                <label for="telefone">Telefone<br></label>
+                <input type="number" id="telefone" name="telefone" required>
+                <br>
+                <label for="email">Email<br></label>
+                <input type="email" id="email" name="email"  required>
+                <input type="hidden" name="operacao" value="c">
+                <br><br>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+        //editData('pessoas', $data['id'], );
+        <?php
     }
 }
-
 $table = [];
 $table = obterBanco('pessoas');
 ?>
@@ -32,23 +45,9 @@ $table = obterBanco('pessoas');
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<section id="esquerda">
-    <form id="alterar" action="index.php" method="post">
-        <h2>CADASTRAR PESSOA</h2>
-        <label for="nome">Nome<br></label>
-        <input type="text" id="nome" name="nome" placeholder="Insira o seu nome" required><br>
-
-        <label for="telefone">Telefone<br></label>
-        <input type="number" id="telefone" name="telefone" placeholder="Insira o telefone" required>
-        <br>
-        <label for="email">Email<br></label>
-        <input type="email" id="email" name="email" placeholder="Informe o email" required>
-        <input type="hidden" name="operacao" value="c">
-        <br><br>
-        <button type="submit">Cadastrar</button>
-
-    </form>
-</section>
+<?php
+//if ()
+//?>
 
 <section id="direita">
     <table>
@@ -77,7 +76,7 @@ $table = obterBanco('pessoas');
             <td>
                 <form action="index.php" method="post">
                     <input type="hidden" name="operacao" value="a">
-                    <input type="hidden" name="id" value="<?php echo $table[$i]['id'] ?>">
+                    <input type="hidden" name="id" value="<?php echo $table[$i]['id']?>">
                     <input type="submit" value="alterar">
                 </form>
             </td>
