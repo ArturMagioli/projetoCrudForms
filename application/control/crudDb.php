@@ -20,7 +20,7 @@ function obterLinha($table, $email) {
     return $cmd->fetch(PDO::FETCH_ASSOC);
 }
 
-function insertData($table, $data) {
+function insertData($table, $data): void {
     try {
         if(!obterLinha($table, $data['email'])) {
             $connect = connection();
@@ -39,25 +39,35 @@ function insertData($table, $data) {
     }
 }
 
-function deleteData($table, $email) {
+function deleteData($table, $id): void {
     try {
         $connect = connection();
-        $cmd = $connect->prepare("DELETE FROM $table WHERE email = :email");
-        $cmd->bindValue(':email', $email);
+        $cmd = $connect->prepare("DELETE FROM $table WHERE id = :id");
+        $cmd->bindValue(':id', $id);
         $cmd->execute();
     }
     catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
 }
-function obterBanco($table) {
+function obterBanco($table): array {
     try {
         $connect = connection();
-        $cmd = $connect->prepare("SELECT nome, telefone, email FROM $table");
+        $cmd = $connect->prepare("SELECT * FROM $table");
         $cmd->execute();
         return $cmd->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
-        return "Error: " . $e->getMessage();
+        echo "Error: " . $e->getMessage();
+        return array();
     }
+}
+
+function editData($table, $data, $email) {
+    $connect = connection();
+    $cmd = $connect->prepare("UPDATE $table SET nome = :nome, telefone = :telefone, email = :email WHERE email = :email");
+    $cmd->bindValue(':nome', $data['nome']);
+    $cmd->bindValue(':telefone', $data['telefone']);
+    $cmd->bindValue(':email', $data['email']);
+    $cmd->bindValue(':email', $email);
 }
