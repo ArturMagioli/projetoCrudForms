@@ -6,7 +6,7 @@
 </head>
 <body>
         <section id="esquerda">
-            <form action="index.php" method="post">
+            <form id="alterar" action="index.php" method="post">
                 <h2>CADASTRAR PESSOA</h2>
                 <label for="nome">Nome<br></label>
                 <input type="text" id="nome" name="nome" placeholder="Insira o seu nome"><br>
@@ -16,6 +16,7 @@
 
                 <label for="email">Email<br></label>
                 <input type="email" id="email" name="email" placeholder="Informe o email">
+                <input type="hidden" name="operacao" value="c">
                 <br><br>
                 <button type="submit">Cadastrar</button>
 
@@ -24,7 +25,18 @@
             <?php
                 require_once "../control/crudDb.php";
                 $data = $_POST;
-                insertData('pessoas', $data);
+            var_dump($data);
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($data)) {
+                if ($data['operacao'] === 'c') {
+                    insertData('pessoas', $data);
+                }
+                else if ($data['operacao'] === 'd') {
+                    deleteData('pessoas', $data['email']);
+                }
+                else if ($data['operacao'] == 'a') {
+                    echo 'Em andamento';
+                }
+            }
             ?>
         </section>
 
@@ -37,17 +49,33 @@
                 </tr>
                 <?php
                     require_once "../control/crudDb.php";
+                    $table = [];
                     $table = obterBanco('pessoas');
-                    for ($i = 0; $i < count($table); $i++) {
+                    $lenght = count($table);
+                    for ($i = 0; $i < $lenght; $i++) {
                         echo "<tr>";
                         foreach ($table[$i] as $key => $value) {
                             echo "<td>".$value."</td>";
                         }
-                        ?> <td><a href="teeste">editar</a>  <a href="testeeee">excluir</a></td> <?php
+                        ?>
+                        <td>
+                            <form action="index.php" method="post">
+                                <input type="hidden" name="operacao" value="d">
+                                <input type="hidden" name="email" value="<?php echo $table[$i]['email']?>">
+                                <input type="submit" value="excluir">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="index.php" method="post">
+                                <input type="hidden" name="operacao" value="a">
+                                <input type="hidden" name="email" value="<?php echo $table[$i]['email']?>">
+                                <input type="submit" value="alterar">
+                            </form>
+                        </td>
+                        <?php
                         echo "</tr>";
                     }
                 ?>
-                </tr>
             </table>
         </section>
 </body>

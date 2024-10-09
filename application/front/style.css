@@ -14,7 +14,7 @@ label, input {
     width: 100%;
 }
 
-form {
+#alterar {
     width: 300px;
     background-color: rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -27,8 +27,9 @@ input[type="submit"] {
     background-color: #007BFF; /* Cor de fundo do botão */
     color: white; /* Cor do texto do botão */
     border: none; /* Remove a borda padrão */
-    padding: 10px; /* Preenchimento interno do botão */
+    padding: 5px; /* Preenchimento interno do botão */
     border-radius: 5px; /* Bordas arredondadas */
+    height: 35px;
 }
 
 input[type="submit"]:hover {
@@ -53,7 +54,7 @@ table {
 }
 
 tr {
-    line-height: 30px;
+    line-height: 20px;
 }
 
 tr#titulo {

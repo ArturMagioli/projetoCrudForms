@@ -15,7 +15,7 @@ function connection() {
 function obterLinha($table, $email) {
     $connect = connection();
     $cmd = $connect->prepare("SELECT * FROM $table where email = :email");
-    $cmd->bindValue(':email', $email);
+    $cmd->bindValue(':email', 'opa@graduação.uerj.br');
     $cmd->execute();
     return $cmd->fetch(PDO::FETCH_ASSOC);
 }
@@ -39,11 +39,11 @@ function insertData($table, $data) {
     }
 }
 
-function deleteData($table, $data) {
+function deleteData($table, $email) {
     try {
         $connect = connection();
         $cmd = $connect->prepare("DELETE FROM $table WHERE email = :email");
-        $cmd->bindValue(':email', $data['email']);
+        $cmd->bindValue(':email', $email);
         $cmd->execute();
     }
     catch (Exception $e) {
