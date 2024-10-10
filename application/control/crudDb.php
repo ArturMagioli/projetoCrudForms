@@ -12,17 +12,25 @@ function connection() {
     }
 }
 
-function obterLinha($table, $email) {
+function obterLinha($table, $tipo, $value) {
     $connect = connection();
-    $cmd = $connect->prepare("SELECT * FROM $table where email = :email");
-    $cmd->bindValue(':email', 'opa@graduação.uerj.br');
+    try {
+        $cmd = $connect->prepare("SELECT * FROM $table WHERE $tipo = :value ");
+        $cmd->bindValue(':value', $value);
+    }
+    catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
     $cmd->execute();
     return $cmd->fetch(PDO::FETCH_ASSOC);
 }
 
 function insertData($table, $data): void {
     try {
-        if(!obterLinha($table, $data['email'])) {
+        if(!obterLinha($table, 'email', $data['email'])) {
             $connect = connection();
             $cmd = $connect->prepare("INSERT INTO $table (nome, telefone, email) VALUES (:nome, :telefone, :email)");
             $cmd->bindValue(':nome', $data['nome']);
@@ -63,13 +71,14 @@ function obterBanco($table): array {
     }
 }
 
-function editData($table, $id, $newData): void {
+function editData($newData): void {
     $connect = connection();
     print_r($newData);
-    $cmd = $connect->prepare("UPDATE $table SET nome = :nome, telefone = :telefone, email = :email WHERE id = :id");
+    $cmd = $connect->prepare("UPDATE pessoas SET nome = :nome, telefone = :telefone, email = :email WHERE id = :id");
     $cmd->bindValue(':nome', $newData['nome']);
     $cmd->bindValue(':telefone', $newData['telefone']);
     $cmd->bindValue(':email', $newData['email']);
-    $cmd->bindValue(':id', $id);
+    print_r($_SESSION['id']);
+    $cmd->bindValue(':id', $newData['id']);
     $cmd->execute();
 }
