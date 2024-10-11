@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pessoa = obterLinha('pessoas', 'id', $data['id']);
         if ($operacao === 'a2') {
             editData($data);
-
+            $pessoa = null;
         }
     }
 }
