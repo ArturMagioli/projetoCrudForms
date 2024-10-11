@@ -30,7 +30,7 @@
                 <form action="index.php" method="post">
                     <input type="hidden" name="operacao" value="a">
                     <input type="hidden" name="id" value="<?php echo $table[$i]['id'] ?>">
-                    <input type="submit" value="alterar" onclick="mudarTextoBotao()">
+                    <input type="submit" value="alterar">
                 </form>
             </td>
             <?php

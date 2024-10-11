@@ -1,24 +1,27 @@
 <?php
+
 //Lida com o CRUD:
 require_once "../control/crudDb.php";
 $data = $_POST;
-print_r($data);
 $nome = $data['nome'] ?? null;
 $telefone = $data['telefone'] ?? null;
 $email = $data['email'] ?? null;
-$data['operacao'] = 'c';
-// tabela dinâmica:
+$operacao = $data['operacao'] ?? null;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($data['operacao'] === 'c' && $nome && $telefone && $email) {
+    if ($operacao === 'c' && $nome && $telefone && $email) {
         insertData('pessoas', $data);
     }
-    else if ($data['operacao'] === 'd') {
+    else if ($operacao === 'd') {
         //$data =
         deleteData('pessoas', $data['id']);
     }
-    else if ($data['operacao'] === 'a') {
+    else if ($operacao === 'a' || $data['operacao'] === 'a2') {
         $pessoa = obterLinha('pessoas', 'id', $data['id']);
-       // getData($pessoa);
+        if ($operacao === 'a2') {
+            editData($data);
+
+        }
     }
 }
 ?>

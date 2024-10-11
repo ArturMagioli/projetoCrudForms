@@ -73,12 +73,10 @@ function obterBanco($table): array {
 
 function editData($newData): void {
     $connect = connection();
-    print_r($newData);
     $cmd = $connect->prepare("UPDATE pessoas SET nome = :nome, telefone = :telefone, email = :email WHERE id = :id");
     $cmd->bindValue(':nome', $newData['nome']);
     $cmd->bindValue(':telefone', $newData['telefone']);
     $cmd->bindValue(':email', $newData['email']);
-    print_r($_SESSION['id']);
     $cmd->bindValue(':id', $newData['id']);
     $cmd->execute();
 }
