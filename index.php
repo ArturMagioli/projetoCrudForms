@@ -1,7 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 //Lida com o CRUD:
-require_once "../control/crudDb.php";
+require_once "modelos/crudDb.php";
 $data = $_POST;
 $nome = $data['nome'] ?? null;
 $telefone = $data['telefone'] ?? null;
@@ -27,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <html lang="pt-br">
-<?php include_once 'header.php'?>
+<?php include_once 'views/header.php' ?>
 <body>
-<?php include 'formulario.php'?>
-<?php include 'tabelaDinamica.php' ?>
+<?php include_once 'views/formulario.php' ?>
+<?php include_once 'views/tabelaDinamica.php' ?>
 </body>
 </html>
