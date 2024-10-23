@@ -21,7 +21,7 @@ label, input {
     margin: 30px auto; /* Centraliza o formulário */
 }
 
-input[type="submit"] {
+a {
     margin-top: 10px;
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
     background-color: #007BFF; /* Cor de fundo do botão */
@@ -30,9 +30,10 @@ input[type="submit"] {
     padding: 5px; /* Preenchimento interno do botão */
     border-radius: 5px; /* Bordas arredondadas */
     height: 35px;
+    text-decoration: none;
 }
 
-input[type="submit"]:hover {
+a:hover {
     background-color: #0056b3; /* Cor ao passar o mouse */
 }
 

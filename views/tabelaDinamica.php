@@ -1,7 +1,3 @@
-<?php
-$table = [];
-$table = obterBanco('pessoas')
-?>
 <?php include 'header.php'; ?>
 <section id="direita">
     <table>
@@ -20,12 +16,16 @@ $table = obterBanco('pessoas')
                 }
             }
             ?>
+<!--            <td>-->
+<!--                <form action="../index.php" method="post">-->
+<!--                    <input type="hidden" name="operacao" value="d">-->
+<!--                    <input type="hidden" name="id" value="--><?php //echo $table[$i]['id']?><!--">-->
+<!--                    <input type="submit" value="excluir">-->
+<!--                </form>-->
+<!--            </td>-->
+
             <td>
-                <form action="../index.php" method="post">
-                    <input type="hidden" name="operacao" value="d">
-                    <input type="hidden" name="id" value="<?php echo $table[$i]['id']?>">
-                    <input type="submit" value="excluir">
-                </form>
+                <a href="?operacao=deletarPessoa&id=<?php echo $table[$i]['id']?>">excluir</a>
             </td>
             <?php //TODO: ALTERAR A TRANSFERÊNCIA DE DADOS DO ID. COLOCAR POR GET AO INVÉS DE POST:?>
             <!--           <td>-->

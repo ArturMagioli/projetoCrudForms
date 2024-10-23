@@ -48,16 +48,18 @@ function insertData($table, $data): void {
     }
 }
 
-function deleteData($table, $id): void {
+function deleteData($table, $id): bool {
     try {
         $connect = connection();
         $cmd = $connect->prepare("DELETE FROM $table WHERE id = :id");
         $cmd->bindValue(':id', $id);
         $cmd->execute();
+        return true;
     }
     catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
+    return false;
 }
 function obterBanco($table): array {
     try {
