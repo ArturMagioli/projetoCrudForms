@@ -16,33 +16,11 @@
                 }
             }
             ?>
-<!--            <td>-->
-<!--                <form action="../index.php" method="post">-->
-<!--                    <input type="hidden" name="operacao" value="d">-->
-<!--                    <input type="hidden" name="id" value="--><?php //echo $table[$i]['id']?><!--">-->
-<!--                    <input type="submit" value="excluir">-->
-<!--                </form>-->
-<!--            </td>-->
-
             <td>
                 <a href="?operacao=deletarPessoa&id=<?php echo $table[$i]['id']?>">excluir</a>
             </td>
-            <?php //TODO: ALTERAR A TRANSFERÊNCIA DE DADOS DO ID. COLOCAR POR GET AO INVÉS DE POST:?>
-            <!--           <td>-->
-            <!--               <form action="index.php" method="post">-->
-            <!--                  <input type="hidden" name="operacao" value="a">-->
-            <!--                    <input type="hidden" name="id" value="--><?php //////echo $table[$i]['id'] ?><!--">-->
-            <!--            <a href="?x=alteraPessoa&id=--><?php ////echo $table[$i]['id'] ?><!--">alterar</a>-->
-            <!--                   <input type="submit" value="alterar">-->
-            <!--                </form>-->
-            <!--           </td>-->
-            <!--            -->
             <td>
-                <form action="../index.php" method="post">
-                    <input type="hidden" name="operacao" value="a">
-                    <input type="hidden" name="id" value="<?php echo $table[$i]['id'] ?>">
-                    <input type="submit" value="alterar">
-                </form>
+                <a href="?operacao=atualizarCadastro&id=<?php echo $table[$i]['id']?>">alterar</td>
             </td>
             <?php
             echo "</tr>";

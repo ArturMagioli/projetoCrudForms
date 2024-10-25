@@ -2,8 +2,7 @@
 <?php
 function connection() {
     try {
-        $pdo = new PDO('sqlite:C:\Users\Artur.Magioli\PhpstormProjects\projetoCrudForms\dataBase\banco_forms.sqlite');
-        return $pdo;
+        return new PDO('sqlite:C:\Users\Artur.Magioli\PhpstormProjects\projetoCrudForms\dataBase\banco_forms.sqlite');
     }
     catch (PDOException $e) {
         return "Error: " . $e->getMessage();
