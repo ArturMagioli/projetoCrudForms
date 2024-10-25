@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'head.php'; ?>
 <section id="direita">
     <table>
         <tr id="titulo1">
@@ -7,6 +7,7 @@
             <td colspan="2">email</td>
         </tr>
         <?php
+        $table = obterBanco('pessoas');
         $length = count($table);
         for ($i = 0; $i < $length; $i++) {
             echo "<tr>";
@@ -20,7 +21,7 @@
                 <a href="?operacao=deletarPessoa&id=<?php echo $table[$i]['id']?>">excluir</a>
             </td>
             <td>
-                <a href="?operacao=atualizarCadastro&id=<?php echo $table[$i]['id']?>">alterar</td>
+                <a href="?operacao=atualizarCadastro&id=<?php echo $table[$i]['id']?>">alterar
             </td>
             <?php
             echo "</tr>";

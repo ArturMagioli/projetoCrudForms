@@ -2,9 +2,10 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require_once "modelos/crudDb.php";
 ?>
 <html lang="pt-br">
-<?php include_once 'views/header.php' ?>
+<?php include_once 'views/head.php' ?>
 <body>
 <?php
 if (isset($_GET['operacao'])) {
